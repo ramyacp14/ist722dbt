@@ -12,6 +12,7 @@ stg_order_details as
     select 
         orderid,
         Quantity as quantity, 
+        ProductID as productkey,
 	(Quantity * UnitPrice) as extendedpriceamount,
 	(Quantity * UnitPrice * Discount) as discountamount,
         (Quantity*UnitPrice*(1-Discount)) as soldamount
@@ -20,6 +21,10 @@ stg_order_details as
 
 select  
     o.*,
-    od.*
+    od.quantity, 
+    od.productkey,
+    od.extendedpriceamount,
+    od.discountamount,
+    od.soldamount
     from stg_orders o
     join stg_order_details od on o.orderid = od.orderid
