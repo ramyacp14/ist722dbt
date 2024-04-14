@@ -1,0 +1,62 @@
+version: 2
+
+sources:
+
+  - name: vision
+    database: vision
+    schema: music
+
+    tables:
+      - name: Customers
+        columns:
+          - name: customer_id
+            tests:
+              - unique
+      - name: Tracks
+        columns:
+          - name: track_id
+            tests:
+              - unique        
+      - name: Artists
+        columns:
+          - name: artist_id
+            tests:
+              - unique        
+      - name: Albums
+        columns:
+          - name: album_id
+            tests:
+              - unique
+      - name: Playlists
+        columns:
+          - name: playlist_id
+            tests:
+              - unique
+      - name: Membership
+        columns:
+          - name: membership_id
+            tests:
+              - unique      
+      - name: Songs_Played
+        columns:
+          - name: track_id
+            tests:
+              - unique                                                  
+      - name: Playlist_Tracks
+        tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - playlist_id
+              - track_id
+      - name: Likes
+        tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - customer_id
+              - track_id
+      - name: Followers
+        tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - customer_id
+              - artist_id
