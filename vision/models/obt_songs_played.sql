@@ -6,7 +6,6 @@ d_artist as (
 )
 
 select 
-    d_artist.*, 
-    f.*
+    f.*, d_artist.artist_popularity, d_artist.ARTIST_FOLLOWERS
     from f_songs_played as f
     left join d_artist on f.artistkey = d_artist.artistkey
