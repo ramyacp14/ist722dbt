@@ -4,13 +4,13 @@ with stg_tracks as
         track_id,
         track_name,
         track_genre
-    from {{ source('vision','Tracks') }}
+    from {{ source('visionmusic','Tracks') }}
 ),
 stg_likes as
 (
     select
         track_id, ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS track_rank
-    from {{ source('vision', 'Likes') }}
+    from {{ source('visionmusic', 'Likes') }}
     GROUP BY track_id
 
 )

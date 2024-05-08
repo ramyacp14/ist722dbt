@@ -4,13 +4,13 @@ with stg_artists as
         artist_id,
         artist_name,
         no_of_tracks
-    from {{ source('vision','Artists') }}
+    from {{ source('visionmusic','Artists') }}
 ),
 stg_followers as
 (
     select
         artist_id, ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS artist_rank
-    from {{ source('vision', 'Followers') }}
+    from {{ source('visionmusic', 'Followers') }}
     GROUP BY artist_id
 
 )
