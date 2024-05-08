@@ -2,12 +2,12 @@ version: 2
 
 sources:
 
-  - name: vision
+  - name: visionmusic
     database: vision
     schema: music
 
     tables:
-      - name: Customers
+      - name: music_customers
         columns:
           - name: customer_id
             tests:
@@ -60,3 +60,9 @@ sources:
             combination_of_columns:
               - customer_id
               - artist_id
+
+      - name: Membership_Billing
+        columns:
+          - name: billing_id
+            tests:
+              - unique   

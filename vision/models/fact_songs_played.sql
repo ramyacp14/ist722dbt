@@ -7,21 +7,21 @@ with stg_tracks as
         track_genre,
         TO_VARCHAR(track_duration, 'HH24:MI:SS') as track_duration_time,
         {{ dbt_utils.generate_surrogate_key(['artist_id']) }} as artistkey
-    from {{ source('vision','Tracks') }}
+    from {{ source('visionmusic','Tracks') }}
 ),
 stg_artists as 
 (
     select
         artist_id,  
         artist_name
-    from {{ source('vision','Artists') }}
+    from {{ source('visionmusic','Artists') }}
 ),
 stg_songs_played as
 (
     select
         track_id,
         date_time 
-    from {{ source('vision', 'Songs_Played') }}
+    from {{ source('visionmusic', 'Songs_Played') }}
 )
 
 select  sp.date_time,
